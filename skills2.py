@@ -27,10 +27,10 @@ def count_unique_file(filename):
 	f = open(filename)
 	for line in f:
 		line = line.strip().split()
-		for char in line:
-			char = char.lower()
-			if char.isalpha():
-				letter_dict[char] = letter_dict.get(char, 0) + 1
+		for word in line:
+			word = word.lower()
+			if word.isalpha():
+				letter_dict[word] = letter_dict.get(word, 0) + 1
 	return letter_dict
 
 
@@ -69,7 +69,7 @@ def common_items2(list1, list2):
 """
 Given a list of numbers, return list of number pairs that sum to zero
 """
-def sum_zero(list1):
+def sum_zero(list1): 
 	# Dicey
 	l = []
 	for i in list1:
@@ -78,7 +78,9 @@ def sum_zero(list1):
 				l.append((i, j))
 	return list(set(l))
 
-# print sum_zero(list1)
+def sum_zero2(list1):
+	# print [[(x, y) if x + y == 0 for x in list1] for y in list1]
+
 
 
 
@@ -142,21 +144,55 @@ print the sentece translated to pirate.
 """
 
 def translate_to_pirate():
-	# Yes, but punctuation?
 	eng_to_pirate = {"sir": "matey", "hotel": "fleabag inn", "student": "swabble", "boy": "matey", "madam": "proud beauty",
 					"professor": "foul blaggart", "restaurant": "galley", "your": "yer", "excuse": "arr", "students": "swabbles", 
 					"are": "be", "lawyer": "foul blaggart", "the": "th'", "restroom": "head", "my": "me", "hello": "avast",
 					"is": "be", "man": "matey"}
 	sentence = raw_input("Please enter a sentence to translate: ")
-	translation = []
 	sentence = sentence.split()
-	for word in sentence:
-		word = word.strip(string.punctuation)
-		if word in eng_to_pirate:
-			translation.append(eng_to_pirate[word])
-		else:
-			translation.append(word)
+	translation = [eng_to_pirate.get(word.strip(string.punctuation), word.strip(string.punctuation)) for word in sentence]
+	# translation = []
+	# for word in sentence:
+	# 	word = word.strip(string.punctuation)
+	# 	translation.append(eng_to_pirate.get(word, word))
+
+	# for word in sentence:
+	# 	word = word.strip(string.punctuation)
+	# 	if word in eng_to_pirate:
+	# 		translation.append(eng_to_pirate[word])
+	# 	else:
+	# 		translation.append(word)
 	return " ".join(translation)
+
+
+def translate2():
+	instructions = """
+	English     Pirate
+
+sir         matey
+hotel       fleabag inn
+student     swabbie
+boy         matey
+madam       proud beauty
+professor   foul blaggart
+restaurant  galley
+your        yer
+excuse      arr
+students    swabbies
+are         be
+lawyer      foul blaggart
+the         th'
+restroom    head
+my          me
+hello       avast
+is          be
+man         matey"""
+	eng_to_pirate = {}
+	words = instructions.split('\n')
+	print words
+	# for i in range(2, len(words) - 1, 2):
+	# 	eng_to_pirate[words[i]] = words[i + 1] 
+	# 	print eng_to_pirate
 
 
 
